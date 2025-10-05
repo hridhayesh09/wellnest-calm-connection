@@ -22,10 +22,10 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
         {/* Logo and Brand Name - Centered */}
         <div className="flex flex-col items-center">
-          <div className="flex items-center gap-4 mb-3">
-            <img src={treeLogo} alt="WellNest Tree" className="h-24 w-24 object-contain" />
+          <div className="flex items-center gap-3 mb-2">
+            <img src={treeLogo} alt="WellNest Tree" className="h-16 w-16 object-contain" />
             <h1 
-              className="text-6xl font-normal text-foreground tracking-tight" 
+              className="text-5xl font-normal text-foreground" 
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
               WellNest
@@ -34,14 +34,11 @@ const Navbar = () => {
           
           {/* Tagline */}
           <p 
-            className="text-base italic text-muted-green mb-6" 
+            className="text-sm text-foreground mb-6" 
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             Smarter matches. Real connections. Better care.
           </p>
-
-          {/* Divider */}
-          <div className="w-full max-w-3xl h-px bg-border/30 mb-6"></div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center justify-center gap-8">
