@@ -30,57 +30,60 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background shadow-md" : "bg-transparent"
+        isScrolled ? "bg-background shadow-md" : "bg-background/95"
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo and Tagline */}
-          <div className="flex items-center space-x-3">
-            <img src={treeLogo} alt="WellNest Tree" className="h-12 w-12" />
+        <div className="grid grid-cols-3 items-center h-24">
+          {/* Logo and Tagline - Left */}
+          <div className="flex items-center space-x-3 justify-start">
+            <img src={treeLogo} alt="WellNest Tree" className="h-14 w-14" />
             <div>
-              <h1 className="text-2xl font-bold text-foreground">WellNest</h1>
+              <h1 className="text-3xl font-bold text-foreground" style={{ fontFamily: "'Playfair Display', serif" }}>
+                WellNest
+              </h1>
               <p className="text-xs text-muted-foreground hidden sm:block">
                 Smarter matches. Real connections. Better care.
               </p>
             </div>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
+          {/* Desktop Navigation - Center */}
+          <div className="hidden lg:flex items-center justify-center space-x-8">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                className="text-sm font-normal text-foreground hover:text-primary transition-colors"
               >
                 {link.label}
               </a>
             ))}
           </div>
 
-          {/* Icons */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="ghost" size="icon">
+          {/* Icons - Right */}
+          <div className="hidden lg:flex items-center justify-end space-x-2">
+            <Button variant="ghost" size="icon" className="rounded-full">
               <User className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" className="rounded-full">
               <Bell className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" className="rounded-full">
               <ShoppingBag className="h-5 w-5" />
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+          <div className="lg:hidden col-span-2 flex justify-end">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Menu */}

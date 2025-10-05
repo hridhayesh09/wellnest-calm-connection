@@ -6,15 +6,21 @@ interface CategoryCardProps {
 
 const CategoryCard = ({ icon, title, description }: CategoryCardProps) => {
   return (
-    <div className="bg-card rounded-2xl p-8 shadow-soft hover:shadow-hover transition-all duration-300 hover:-translate-y-1 group">
-      <div className="flex flex-col items-start text-left">
+    <div className="bg-cream/50 rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300 group">
+      <div className="flex items-start gap-6 text-left">
         <img
           src={icon}
           alt={`${title} icon`}
-          className="h-20 w-20 mb-6 opacity-70 group-hover:opacity-100 transition-opacity"
+          className="h-24 w-24 flex-shrink-0 opacity-60 group-hover:opacity-80 transition-opacity"
         />
-        <h3 className="text-2xl font-semibold text-foreground mb-3">{title}</h3>
-        <p className="text-muted-foreground leading-relaxed">{description}</p>
+        <div className="flex-1">
+          <h3 className="text-2xl font-semibold text-foreground mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>
+            {title}
+          </h3>
+          <p className="text-muted-foreground leading-relaxed text-sm">
+            {description}
+          </p>
+        </div>
       </div>
     </div>
   );
