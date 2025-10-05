@@ -1,26 +1,16 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { User, Bell, ShoppingBag, Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import treeLogo from "@/assets/wellnest-tree.png";
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const navLinks = [
     { label: "Home", href: "#home" },
-    { label: "login", href: "#login" },
-    { label: "quiz", href: "#quiz" },
-    { label: "therapist", href: "#therapist" },
+    { label: "Login", href: "#login" },
+    { label: "Quiz", href: "#quiz" },
+    { label: "Therapist", href: "#therapist" },
     { label: "Why WellNest?", href: "#why" },
     { label: "Services", href: "#services" },
     { label: "Blog", href: "#blog" },
@@ -28,65 +18,47 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-background border-b border-border">
+    <nav className="bg-background border-b border-border/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between py-3">
-          {/* Logo and Tagline - Left */}
-          <div className="flex items-center space-x-2">
-            <img src={treeLogo} alt="WellNest Tree" className="h-16 w-16" />
-            <div className="flex flex-col items-start">
-              <h1 
-                className="text-4xl font-bold text-foreground leading-none" 
-                style={{ fontFamily: "'Dancing Script', cursive" }}
-              >
-                WellNest
-              </h1>
-              <p className="text-xs text-foreground mt-1 italic" style={{ fontFamily: "'Playfair Display', serif" }}>
-                Smarter matches. Real connections. Better care.
-              </p>
-            </div>
-          </div>
-
-          {/* Desktop Navigation - Center */}
-          <div className="hidden lg:flex items-center justify-center space-x-8 flex-1 mx-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm font-normal text-foreground hover:text-primary transition-colors"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-
-          {/* Icons - Right */}
-          <div className="hidden lg:flex items-center justify-end space-x-1">
-            <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
-              <ChevronDown className="h-4 w-4" />
-            </Button>
-            <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 bg-muted">
-              <User className="h-4 w-4" />
-            </Button>
-            <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
-              <Bell className="h-4 w-4" />
-            </Button>
-            <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 bg-foreground text-background">
-              <ShoppingBag className="h-4 w-4" />
-            </Button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        {/* Logo and Tagline - Centered */}
+        <div className="flex flex-col items-center py-6">
+          <div className="flex items-center space-x-3 mb-2">
+            <img src={treeLogo} alt="WellNest Tree" className="h-20 w-20" />
+            <h1 
+              className="text-5xl font-normal text-foreground" 
+              style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
+              WellNest
+            </h1>
           </div>
+          <p className="text-sm text-foreground italic" style={{ fontFamily: "'Playfair Display', serif" }}>
+            Smarter matches. Real connections. Better care.
+          </p>
+        </div>
+
+        {/* Desktop Navigation - Centered */}
+        <div className="hidden lg:flex items-center justify-center space-x-12 pb-6">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="text-sm font-normal text-foreground hover:text-sage transition-colors"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+
+        {/* Mobile Menu Button */}
+        <div className="lg:hidden flex justify-center pb-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </Button>
         </div>
 
         {/* Mobile Menu */}
@@ -97,8 +69,9 @@ const Navbar = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-sm font-medium text-foreground hover:text-primary transition-colors px-4 py-2"
+                  className="text-sm font-medium text-foreground hover:text-sage transition-colors px-4 py-2 text-center"
                   onClick={() => setIsMobileMenuOpen(false)}
+                  style={{ fontFamily: "'Playfair Display', serif" }}
                 >
                   {link.label}
                 </a>
