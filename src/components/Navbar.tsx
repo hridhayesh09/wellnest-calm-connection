@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { User, Bell, ShoppingBag, Menu, X } from "lucide-react";
+import { User, Bell, ShoppingBag, Menu, X, ChevronDown } from "lucide-react";
 import treeLogo from "@/assets/wellnest-tree.png";
 
 const Navbar = () => {
@@ -18,9 +18,9 @@ const Navbar = () => {
 
   const navLinks = [
     { label: "Home", href: "#home" },
-    { label: "Login", href: "#login" },
-    { label: "Quiz", href: "#quiz" },
-    { label: "Therapist", href: "#therapist" },
+    { label: "login", href: "#login" },
+    { label: "quiz", href: "#quiz" },
+    { label: "therapist", href: "#therapist" },
     { label: "Why WellNest?", href: "#why" },
     { label: "Services", href: "#services" },
     { label: "Blog", href: "#blog" },
@@ -28,33 +28,33 @@ const Navbar = () => {
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background shadow-md" : "bg-background/95"
-      }`}
-    >
+    <nav className="bg-background border-b border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-3 items-center h-24">
+        <div className="flex items-center justify-between py-3">
           {/* Logo and Tagline - Left */}
-          <div className="flex items-center space-x-3 justify-start">
-            <img src={treeLogo} alt="WellNest Tree" className="h-14 w-14" />
-            <div>
-              <h1 className="text-3xl font-bold text-foreground" style={{ fontFamily: "'Playfair Display', serif" }}>
+          <div className="flex items-center space-x-2">
+            <img src={treeLogo} alt="WellNest Tree" className="h-16 w-16" />
+            <div className="flex flex-col items-start">
+              <h1 
+                className="text-4xl font-bold text-foreground leading-none" 
+                style={{ fontFamily: "'Dancing Script', cursive" }}
+              >
                 WellNest
               </h1>
-              <p className="text-xs text-muted-foreground hidden sm:block">
+              <p className="text-xs text-foreground mt-1 italic" style={{ fontFamily: "'Playfair Display', serif" }}>
                 Smarter matches. Real connections. Better care.
               </p>
             </div>
           </div>
 
           {/* Desktop Navigation - Center */}
-          <div className="hidden lg:flex items-center justify-center space-x-8">
+          <div className="hidden lg:flex items-center justify-center space-x-8 flex-1 mx-8">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 className="text-sm font-normal text-foreground hover:text-primary transition-colors"
+                style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 {link.label}
               </a>
@@ -62,20 +62,23 @@ const Navbar = () => {
           </div>
 
           {/* Icons - Right */}
-          <div className="hidden lg:flex items-center justify-end space-x-2">
-            <Button variant="ghost" size="icon" className="rounded-full">
-              <User className="h-5 w-5" />
+          <div className="hidden lg:flex items-center justify-end space-x-1">
+            <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
+              <ChevronDown className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="icon" className="rounded-full">
-              <Bell className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 bg-muted">
+              <User className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="icon" className="rounded-full">
-              <ShoppingBag className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="rounded-full h-8 w-8">
+              <Bell className="h-4 w-4" />
+            </Button>
+            <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 bg-foreground text-background">
+              <ShoppingBag className="h-4 w-4" />
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden col-span-2 flex justify-end">
+          <div className="lg:hidden">
             <Button
               variant="ghost"
               size="icon"
