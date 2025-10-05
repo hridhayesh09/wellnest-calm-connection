@@ -44,6 +44,8 @@ All colors MUST be HSL.
     --sage-dark: 135 20% 45%;
     --cream: 30 25% 95%;
     --charcoal: 0 0% 20%;
+    --muted-green: 92 15% 40%;
+    --hover-green: 85 20% 60%;
     
     /* Shadows */
     --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.06);

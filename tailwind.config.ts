@@ -54,6 +54,8 @@ export default {
         },
         cream: "hsl(var(--cream))",
         charcoal: "hsl(var(--charcoal))",
+        "muted-green": "hsl(var(--muted-green))",
+        "hover-green": "hsl(var(--hover-green))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

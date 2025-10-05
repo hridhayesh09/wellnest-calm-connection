@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import treeLogo from "@/assets/wellnest-tree.png";
+import treeLogo from "@/assets/wellnest-tree-hand-drawn.png";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -18,58 +18,72 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-background border-b border-border/50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Logo and Tagline - Centered */}
-        <div className="flex flex-col items-center py-6">
-          <div className="flex items-center space-x-3 mb-2">
-            <img src={treeLogo} alt="WellNest Tree" className="h-20 w-20" />
+    <nav className="bg-background py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+        {/* Logo and Brand Name - Centered */}
+        <div className="flex flex-col items-center">
+          <div className="flex items-center gap-4 mb-3">
+            <img src={treeLogo} alt="WellNest Tree" className="h-24 w-24 object-contain" />
             <h1 
-              className="text-5xl font-normal text-foreground" 
+              className="text-6xl font-normal text-foreground tracking-tight" 
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
               WellNest
             </h1>
           </div>
-          <p className="text-sm text-foreground italic" style={{ fontFamily: "'Playfair Display', serif" }}>
+          
+          {/* Tagline */}
+          <p 
+            className="text-base italic text-muted-green mb-6" 
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
             Smarter matches. Real connections. Better care.
           </p>
-        </div>
 
-        {/* Desktop Navigation - Centered */}
-        <div className="hidden lg:flex items-center justify-center space-x-12 pb-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-sm font-normal text-foreground hover:text-sage transition-colors"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+          {/* Divider */}
+          <div className="w-full max-w-3xl h-px bg-border/30 mb-6"></div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center justify-center gap-8">
+            {navLinks.map((link, index) => (
+              <div key={link.label} className="flex items-center">
+                <a
+                  href={link.href}
+                  className="text-sm font-normal text-foreground hover:text-hover-green transition-all duration-300 relative group"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  {link.label}
+                  <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-hover-green transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                {index < navLinks.length - 1 && (
+                  <span className="text-muted-green/30 mx-4">|</span>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden mt-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-foreground"
             >
-              {link.label}
-            </a>
-          ))}
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="lg:hidden flex justify-center pb-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 bg-background border-t">
-            <div className="flex flex-col space-y-3">
+          <div className="lg:hidden mt-6 pt-6 border-t border-border/30 animate-fade-in">
+            <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-sm font-medium text-foreground hover:text-sage transition-colors px-4 py-2 text-center"
+                  className="text-sm font-normal text-foreground hover:text-hover-green transition-colors text-center py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                   style={{ fontFamily: "'Playfair Display', serif" }}
                 >
